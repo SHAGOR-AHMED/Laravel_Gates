@@ -1,0 +1,21 @@
+Define custome gates: app/Providers/AuthServiceProvider.php
+ public function boot()
+    {
+        $this->registerPolicies();
+
+        //define a admin user role
+        //$users is custome variable. 
+        Gate::define('isAdmin', function($users){
+            return $users->role == 'admin';
+        });
+
+        //define a manager user role
+        Gate::define('isManager', function($user){
+            return $user->role == 'manager';
+        });
+
+        //define a user role
+        Gate::define('isUser', function($user){
+            return $user->role == 'user';
+        });
+    }
